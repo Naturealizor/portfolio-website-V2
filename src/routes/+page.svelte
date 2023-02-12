@@ -1,6 +1,14 @@
-<!-- <script>
+<script>
 	import DarkButton from './darkButton.svelte';
-</script> -->
+
+	// let darkMode = false;
+
+	// $: if (darkMode) {
+	// 	document.documentElement.setAttribute('data-theme', 'dark');
+	// } else {
+	// 	document.documentElement.setAttribute('data-theme', 'light');
+	// }
+</script>
 
 <body id="top">
 	<header class="header center">
@@ -15,9 +23,12 @@
 				<li class="nav__list-item">
 					<a class="link link--nav" href="#contact">Contact</a>
 				</li>
+				<!-- <button on:click={() => (darkMode = !darkMode)} class="btn btn--icon"> -->
+				<!-- <i aria-hidden="true" id="btn-theme" class="fas fa-moon" /> -->
+				<!-- </button> -->
 			</ul>
 			<!-- place DarkButton -->
-			<!-- <DarkButton /> -->
+			<DarkButton />
 
 			<button type="button" aria-label="toggle theme" class="btn btn--icon">
 				<i aria-hidden="true" id="btn-theme" class="fas fa-moon" />
@@ -37,8 +48,9 @@
 			<p class="about__desc">
 				I am currently based in Delaware and love messing around with new and different web tech.
 				I'm currently working with Sveltekit on most of my project using Tailwinds CSS for styling.
-				I also love to rock climb and hike when I get the chance. If you're looking for some help
-				website or project, or if you have any good spots to climb up here, feel free to reach out.
+				I also love to rock climb and hike when I get the chance. If you're looking for some help on
+				a website or project, or if you have any good spots to climb up here, feel free to reach
+				out.
 			</p>
 
 			<div class="about__contact center">
@@ -255,7 +267,7 @@
 	</main>
 
 	<footer class="footer">
-		<a href="https://github.com/Naturealizor/cleanfolio-site" class="link footer__link">
+		<a href="https://github.com/Naturealizor/portfolio-website-V2" class="link footer__link">
 			Created By Jacob Jordan
 		</a>
 		<!-- <p>
