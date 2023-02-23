@@ -48,6 +48,7 @@
 		<br />
 		<br />
 	</div>
+	<hr />
 	<h2 class="uppercase m-5">Dispenser Manager</h2>
 	<div class="m-6 p-2">
 		<h3 id="form-input">Does the site have a Power Integrity, SSDI or an outside control box?</h3>
