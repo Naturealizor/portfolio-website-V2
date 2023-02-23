@@ -1,13 +1,5 @@
 <script>
 	import DarkButton from './darkButton.svelte';
-
-	// let darkMode = false;
-
-	// $: if (darkMode) {
-	// 	document.documentElement.setAttribute('data-theme', 'dark');
-	// } else {
-	// 	document.documentElement.setAttribute('data-theme', 'light');
-	// }
 </script>
 
 <body id="top">
@@ -23,9 +15,6 @@
 				<li class="nav__list-item">
 					<a class="link link--nav" href="#contact">Contact</a>
 				</li>
-				<!-- <button on:click={() => (darkMode = !darkMode)} class="btn btn--icon"> -->
-				<!-- <i aria-hidden="true" id="btn-theme" class="fas fa-moon" /> -->
-				<!-- </button> -->
 			</ul>
 			<!-- place DarkButton -->
 			<DarkButton />
@@ -43,7 +32,7 @@
 	<main>
 		<!-- About -->
 		<div class="about center">
-			<h1>Hi, I am <span class="about__name">Jacob Jordan</span></h1>
+			<h1>Hi, I'm <span class="about__name">Jacob Jordan</span></h1>
 			<h2 class="about__role">A Front end Developer</h2>
 			<p class="about__desc">
 				I am currently based in Delaware and love messing around with new and different web tech.
@@ -270,19 +259,6 @@
 		<a href="https://github.com/Naturealizor/portfolio-website-V2" class="link footer__link">
 			Created By Jacob Jordan
 		</a>
-		<!-- <p>
-			Credit to <a
-				href="https://github.com/rajshekhar26/cleanfolio-minimal"
-				class="link footer__link">rajshekhar26</a
-			> for the base design.
-		</p> -->
-		<!-- <hr /> -->
-		<!-- <a
-			style="bottom:0%; top:2em;"
-			href="https://github.com/rajshekhar26/cleanfolio-minimal"
-			aria-label="source code"
-			class="link footer__link">Source Code</a
-		> -->
 	</footer>
 
 	<div class="scroll-container">
@@ -292,8 +268,6 @@
 			</a>
 		</div>
 	</div>
-
-	<!-- <script src="./script.js"></script> -->
 </body>
 
 <style>
@@ -308,13 +282,13 @@
 		font-size: inherit;
 		box-shadow: none;
 		box-sizing: border-box;
-		/* --clr-bg: #fcfcfc;
+		--clr-bg: #fcfcfc;
 		--clr-bg-alt: #fff;
 		--clr-fg: #555;
 		--clr-fg-alt: #444;
 		--clr-primary: #6217ae;
 		--clr-link: #793ed3;
-		--shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+		--shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	}
 	:global(body) {
 		--clr-bg: #fcfcfc;
