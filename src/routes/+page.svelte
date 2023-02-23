@@ -259,6 +259,11 @@
 		<a href="https://github.com/Naturealizor/portfolio-website-V2" class="link footer__link">
 			Created By Jacob Jordan
 		</a>
+		<ul>
+			<li>
+				<a class="float-right link link--nav" href="/rofosurvey">rofo</a>
+			</li>
+		</ul>
 	</footer>
 
 	<div class="scroll-container">
