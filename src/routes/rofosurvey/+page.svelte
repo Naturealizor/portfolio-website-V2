@@ -46,12 +46,12 @@
 		URL.revokeObjectURL(link.href);
 	}
 
-	var currentValue = 0;
-	function handleClick(pwrType) {
-		alert('Old value: ' + currentValue);
-		alert('New value: ' + pwrType.value);
-		currentValue = pwrType.value;
-	}
+	// var currentValue = 0;
+	// function handleClick(pwrType) {
+	// 	alert('Old value: ' + currentValue);
+	// 	alert('New value: ' + pwrType.value);
+	// 	currentValue = pwrType.value;
+	// }
 </script>
 
 <body>
@@ -129,7 +129,9 @@
 				<label for="pwrType" id="question"
 					>Does the site have a Power Integrity, SSDI or an outside control box?</label
 				>
-				<label>
+				<input type="text" id="form-input" name="pwrType" class="border-4" />
+
+				<!-- <label>
 					<input
 						type="radio"
 						bind:group={pwrType}
@@ -158,7 +160,7 @@
 						name="pwrType"
 						class="border-4"
 					/> Outside Control Box
-				</label>
+				</label> -->
 				<!-- {#if }
 					
 				{/if} -->
