@@ -41,6 +41,7 @@
 </script>
 
 <h1 class="text-xl text-center uppercase bg-blue-700 text-white p-10">rofo store survey</h1>
+
 <!-- <body> -->
 <h2 class="uppercase m-5 bg-yellow-200">e-stop info</h2>
 <br />
@@ -158,3 +159,6 @@
 	<br />
 </div>
 <button class="bg-blue-700 text-white p-2 m-5" on:click={submitForm}>Submit</button>
+
+
+
