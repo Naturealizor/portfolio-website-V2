@@ -61,14 +61,15 @@
 			class="col-span-1 col-start-1 sm:col-span-4 lg:col-span-4 lg:col-start-2 2xl:col-span-2 2xl:col-start-2"
 		>
 			<!-- <DarkButton /> -->
-			<h2 class="uppercase m-5 bg-yellow-200">e-stop info</h2>
-			<br />
-			<div class="flex">
-				<h3 class="ml-6 text-3xl mr-5" id="question">Store #</h3>
+			<div class="flex m-5">
+				<h2 class=" text-3xl mr-5" id="question">Store #</h2>
 				<input class="border-4 " type="text" id="form-input" name="storeNum" />
 			</div>
+			<br />
+			<h2 class="uppercase m-5 bg-yellow-200">e-stop info</h2>
+			<div class="flex" />
 			<div class="m-6 p-2 grid">
-				<label for="totalEstops" id="question">How many E-Stops are at this store</label>
+				<label for="totalEstops" id="question">How many E-Stops are at this site</label>
 				<input
 					class="border-4 m-2 pr-1"
 					type="number"
@@ -200,6 +201,10 @@
 				<br />
 				<label for="otherStyle" id="question">If other please specify type</label>
 				<input class="border-4 m-2 pr-4" type="text" id="form-input" name="otherStyle" />
+				<label for="stpHook" id="question"
+					>Does this site have Dispenser Hook Isolation (STP-DHI) boxes installed?</label
+				>
+				<input class="border-4 m-2 pr-4" type="text" id="form-input" name="stpHook" />
 				<br />
 				<label for="motorLoc" id="question">Where are the motors controllers located </label>
 				<input class="border-4 m-2 pr-4" type="text" id="form-input" name="motorLoc" />
