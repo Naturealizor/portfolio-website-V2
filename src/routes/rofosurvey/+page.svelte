@@ -1,4 +1,6 @@
 <script>
+	// import DarkButton from '../darkButton.svelte';
+
 	let totalEstops;
 	let outsideBtns;
 	let insideBtns;
@@ -10,13 +12,6 @@
 		const link = document.createElement('a');
 		const questionInputs = document.querySelectorAll('#question');
 		const inputs = document.querySelectorAll('#form-input');
-
-		// let content = '';
-		// for (let i = 0; i < questionInputs.length; i++) {
-		// 	content += questionInputs[i].textContent + ': ' + inputs[i].value + '\n';
-		// }
-		//create new const to itterate through each question as an array
-
 		const questions = [];
 		questionInputs.forEach((question) => {
 			questions.push(question.innerText);
@@ -35,11 +30,10 @@
 	}
 </script>
 
-<h1 class="text-4xl text-center uppercase bg-blue-700 text-white p-10">rofo store survey</h1>
-
 <body>
 	<div class="grid grid-cols-6">
 		<div class="col-span-4 col-start-2">
+			<!-- <DarkButton /> -->
 			<h2 class="uppercase m-5 bg-yellow-200">e-stop info</h2>
 			<br />
 			<div class="flex">
