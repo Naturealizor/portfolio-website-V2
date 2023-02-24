@@ -23,6 +23,7 @@
 	let pantherVoltage = '';
 	let pantherLoc = '';
 	let commsStyle = '';
+	let btnStyle = '';
 
 	function submitForm() {
 		// save the inputs to a txt file
@@ -100,6 +101,18 @@
 					name="insideBtns"
 				/>
 				<input class="border-4 m-2 pr-1" type="range" bind:value={insideBtns} min="0" max="10" />
+				<br />
+				<label class="m-2" for="btnStyle" id="question"
+					>Are the E-Stop buttons momentary or maintain style?
+				</label>
+				<input
+					class="border-4 ml-2"
+					type="text"
+					bind:value={btnStyle}
+					id="form-input"
+					style="resize: both;"
+					name="resetEstop"
+				/>
 				<br />
 				<label class="m-2" for="resetEstop" id="question"
 					>Do the E-Stop buttons contain a reset button?
