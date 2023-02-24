@@ -55,8 +55,10 @@
 </script>
 
 <body>
-	<div class="grid grid-cols-6">
-		<div class="col-span-4 col-start-2">
+	<div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-4">
+		<div
+			class="col-span-1 col-start-1 sm:col-span-4 lg:col-span-4 lg:col-start-2 2xl:col-span-2 2xl:col-start-2"
+		>
 			<!-- <DarkButton /> -->
 			<h2 class="uppercase m-5 bg-yellow-200">e-stop info</h2>
 			<br />
