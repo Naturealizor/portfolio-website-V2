@@ -9,21 +9,46 @@
 	let pwrType = 1;
 	let pwrReset = '';
 	let eResetLoc = '';
-	let mainReset = '';
-	let motorStyle = '';
-	let motorLoc = '';
-	let otherStyle = '';
-	let motorAccess = '';
-	let stpBreakers = '';
-	let stpPanelInfo = '';
-	let fuelBreakers = '';
-	let tankLoc = '';
-	let tankAccess = '';
-	let pantherGrounded = '';
-	let pantherVoltage = '';
-	let pantherLoc = '';
-	let commsStyle = '';
-	let btnStyle = '';
+	let selected;
+
+	let estopQuestions = [
+		{ id: 1, text: `How many E-Stops are at this site?` },
+		{ id: 2, text: `Outside:` },
+		{ id: 3, text: `Inside:` },
+		{ id: 4, text: `Are the E-stop buttons momentary or maintain style?` },
+		{ id: 5, text: `Do the E-Stop buttons contain a reset button?` },
+		{ id: 6, text: `If yes what is the location?` }
+	];
+	let powerQuestions = [
+		{ id: 7, text: `Does the site have a Power Integrity, SSDI or an outside control box?` },
+		{ id: 8, text: `Is there a “fuel reset” button on the face of the unit?` },
+		{ id: 9, text: `If unit is outside where is the main reset for the E-Stop circuit?` },
+		{
+			id: 10,
+			text: `What style motor controllers are at the site? (i.e. MAGVFC, STP-IST, STP-CBS, Red Jacket etc..)`
+		},
+		{ id: 11, text: `If other please specify type` },
+		{ id: 12, text: `Does this site have Dispenser Hook Isolation (STP-DHI) boxes installed?` },
+		{ id: 13, text: `Where are the motors controllers located?` },
+		{ id: 14, text: `Are they accessible?` },
+		{ id: 15, text: `Are the breakers labelled correctly for the STPs?` },
+		{ id: 16, text: `List panel location, panel letter, and breaker#` },
+		{ id: 17, text: `Check labels for fuel dispensers and list panel info` },
+		{ id: 18, text: `Where is the tank monitor located?` },
+		{ id: 19, text: `Where is the tank monitor breaker located and how is it labelled?` }
+	];
+	let panterQuestions = [
+		{
+			id: 20,
+			text: `Is the Panther box plugged into a Mac Victor isolated ground receptacle (Orange plug)?`
+		},
+		{ id: 21, text: `Is there a low voltage disconnect box installed at the site?` },
+		{
+			id: 22,
+			text: `Does the site have Wayne Connect, Switch, or Wireless installed for ICR coms?`
+		},
+		{ id: 23, text: `Where is the above equipment located?` }
+	];
 
 	function submitForm() {
 		// save the inputs to a txt file
