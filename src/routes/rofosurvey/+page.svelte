@@ -51,12 +51,13 @@
 		questionInputs.forEach((question) => {
 			questions.push(question.innerText);
 		});
-		const content =
-			questions.join('\n') +
-			'\n' +
-			Array.from(inputs)
-				.map((input) => input.value)
-				.join('\n');
+		let surveyQuestions = questions.join('\n');
+		let surveyAnswers = Array.from(inputs)
+			.map((input) => input.value)
+			.join('\n');
+
+		const content = { surveyQuestions } + { surveyAnswers };
+
 		const file = new Blob([content], { type: 'text/plain' });
 		link.href = URL.createObjectURL(file);
 		link.download = 'rofoSurvey.txt';
