@@ -1,20 +1,8 @@
 <script>
-	// import DarkButton from '../darkButton.svelte';
-
-	let storeNum = '';
-	let totalEstops = 0;
-	let outsideBtns = 0;
-	let insideBtns = 0;
-	let resetEstop = '';
-	let pwrType = 1;
-	let pwrReset = '';
-	let eResetLoc = '';
-	let selected;
-
 	let estopQuestions = [
-		{ id: 1, text: `How many E-Stops are at this site?` },
-		{ id: 2, text: `Outside:` },
-		{ id: 3, text: `Inside:` },
+		// { id: 1, text: `How many E-Stops are at this site?` },
+		// { id: 2, text: `Outside:` },
+		// { id: 3, text: `Inside:` },
 		{ id: 4, text: `Are the E-stop buttons momentary or maintain style?` },
 		{ id: 5, text: `Do the E-Stop buttons contain a reset button?` },
 		{ id: 6, text: `If yes what is the location?` }
@@ -22,7 +10,9 @@
 	let powerQuestions = [
 		{ id: 7, text: `Does the site have a Power Integrity, SSDI or an outside control box?` },
 		{ id: 8, text: `Is there a “fuel reset” button on the face of the unit?` },
-		{ id: 9, text: `If unit is outside where is the main reset for the E-Stop circuit?` },
+		{ id: 9, text: `If unit is outside where is the main reset for the E-Stop circuit?` }
+	];
+	let motorQuestions = [
 		{
 			id: 10,
 			text: `What style motor controllers are at the site? (i.e. MAGVFC, STP-IST, STP-CBS, Red Jacket etc..)`
@@ -33,7 +23,9 @@
 		{ id: 14, text: `Are they accessible?` },
 		{ id: 15, text: `Are the breakers labelled correctly for the STPs?` },
 		{ id: 16, text: `List panel location, panel letter, and breaker#` },
-		{ id: 17, text: `Check labels for fuel dispensers and list panel info` },
+		{ id: 17, text: `Check labels for fuel dispensers and list panel info` }
+	];
+	let tankQuestions = [
 		{ id: 18, text: `Where is the tank monitor located?` },
 		{ id: 19, text: `Where is the tank monitor breaker located and how is it labelled?` }
 	];
@@ -85,139 +77,58 @@
 		<div
 			class="col-span-1 col-start-1 sm:col-span-4 lg:col-span-4 lg:col-start-2 2xl:col-span-2 2xl:col-start-2"
 		>
-			<!-- <DarkButton /> -->
 			<div class="flex m-5">
-				<h2 class=" text-3xl mr-5" id="question">Store #</h2>
+				<h2 class=" text-3xl mr-5 " id="question">Store #</h2>
 				<input class="border-4 " type="text" id="form-input" name="storeNum" />
 			</div>
-			<br />
-			<h2 class="uppercase m-5 bg-yellow-200">e-stop info</h2>
-			<div class="flex" />
-			<div class="m-6 p-2 grid">
-				<label for="totalEstops" id="question">How many E-Stops are at this site</label>
-				<input
-					class="border-4 m-2 pr-1"
-					type="number"
-					id="form-input"
-					bind:value={totalEstops}
-					min="0"
-					max="10"
-					name="totalEstops"
-				/>
-				<input class="border-4 m-2 pr-1" type="range" bind:value={totalEstops} min="0" max="10" />
-				<br />
-				<label for="outsideBtns" id="question">Outside:</label>
-				<input
-					class="border-4 m-2 pr-1"
-					type="number"
-					bind:value={outsideBtns}
-					min="0"
-					max="5"
-					id="form-input"
-					name="outsideBtns"
-				/>
-				<input class="border-4 m-2 pr-1" type="range" bind:value={outsideBtns} min="0" max="10" />
-				<br />
-				<label for="insideBtns" id="question">Inside:</label>
-				<input
-					class="border-4 m-2 pr-4"
-					type="number"
-					bind:value={insideBtns}
-					id="form-input"
-					name="insideBtns"
-				/>
-				<input class="border-4 m-2 pr-1" type="range" bind:value={insideBtns} min="0" max="10" />
-				<br />
-				<label class="m-2" for="btnStyle" id="question"
-					>Are the E-Stop buttons momentary or maintain style?
-				</label>
-				<input
-					class="border-4 ml-2"
-					type="text"
-					bind:value={btnStyle}
-					id="form-input"
-					style="resize: both;"
-					name="resetEstop"
-				/>
-				<br />
-				<label class="m-2" for="resetEstop" id="question"
-					>Do the E-Stop buttons contain a reset button?
-				</label>
-				<input
-					class="border-4 ml-2"
-					type="text"
-					bind:value={resetEstop}
-					id="form-input"
-					style="resize: both;"
-					name="resetEstop"
-				/>
-				<br />
-				<label class="m-2" for="eResetLoc" id="question">If yes what is the location?</label>
-				<input
-					class="border-4 m-2 pr-4"
-					type="text"
-					bind:value={eResetLoc}
-					id="form-input"
-					name="eResetLoc"
-				/>
-				<br />
-				<br />
-			</div>
-			<h2 class="uppercase m-5 bg-yellow-200">Dispenser Manager</h2>
-			<div class="m-6 p-2 grid">
-				<label for="pwrType" id="question"
-					>Does the site have a Power Integrity, SSDI or an outside control box?</label
-				>
-				<input type="text" id="form-input" name="pwrType" class="border-4" />
+			<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">e-stop info</h2>
+			{#each estopQuestions as question}
+				<div class="grid m-5">
+					<p class=" text-md mr-5" id="question">{question.text}</p>
+					<input class="border-4 " type="text" id="form-input" name="storeNum" />
+				</div>
+			{/each}
+			<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">Dispenser Manager</h2>
+			{#each powerQuestions as question}
+				<div class="grid m-5">
+					<p class=" text-md mr-5" id="question">{question.text}</p>
+					<input class="border-4 " type="text" id="form-input" name="storeNum" />
+				</div>
+			{/each}
+			<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">
+				motor control and dispenser info
+			</h2>
+			{#each motorQuestions as question}
+				<div class="grid m-5">
+					<p class=" text-md mr-5" id="question">{question.text}</p>
+					<input class="border-4 " type="text" id="form-input" name="storeNum" />
+				</div>
+			{/each}
+			<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">tank monitor info</h2>
+			{#each tankQuestions as question}
+				<div class="grid m-5">
+					<p class=" text-md mr-5" id="question">{question.text}</p>
+					<input class="border-4 " type="text" id="form-input" name="storeNum" />
+				</div>
+			{/each}
+			<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">
+				panther box and communication info
+			</h2>
+			{#each panterQuestions as question}
+				<div class="grid m-5">
+					<p class=" text-md mr-5" id="question">{question.text}</p>
+					<input class="border-4 " type="text" id="form-input" name="storeNum" />
+				</div>
+			{/each}
+		</div>
+	</div>
 
-				<!-- <label>
-					<input
-						type="radio"
-						bind:group={pwrType}
-						on:click={handleClick}
-						value="1"
-						name="pwrType"
-						class="border-4"
-					/> Power Integrity
-				</label>
-				<label>
-					<input
-						type="radio"
-						bind:group={pwrType}
-						on:click={handleClick}
-						value="2"
-						name="pwrType"
-						class="border-4"
-					/> SSDI
-				</label>
-				<label>
-					<input
-						type="radio"
-						bind:group={pwrType}
-						on:click={handleClick}
-						value="3"
-						name="pwrType"
-						class="border-4"
-					/> Outside Control Box
-				</label> -->
-				<!-- {#if }
-					
-				{/if} -->
-				<br />
-				<label for="pwrReset" id="question"
-					>Is there a “fuel reset” button on the face of the unit?
-				</label>
-				<input class="border-4 m-2 pr-1" type="num" id="form-input" name="pwrReset" />
-				<br />
-				<label for="mainReset" id="question"
-					>If unit is outside where is the main reset for the E-Stop circuit?</label
-				>
-				<input class="border-4 m-2 pr-4" type="num" id="form-input" name="mainReset" />
-				<br />
-				<br />
-			</div>
-			<h2 class="uppercase m-5 bg-yellow-200">motor control and dispenser info</h2>
-			<div class="m-6 p-2 grid">
+	<button class="bg-blue-700 text-white p-2 m-5 align-center text-lg" on:click={submitForm}
+		>Submit</button
+	>
+</body>
+
+<!-- <div class="m-6 p-2 grid">
 				<label for="motorStyle" id="question"
 					>What style motor controllers are at the site? (i.e. MAGVFC, STP-IST, STP-CBS, Red Jacket
 					etc..)</label
@@ -253,7 +164,7 @@
 				<input class="border-4 m-2 pr-4" type="text" id="form-input" name="fuelBreakers" />
 				<br />
 			</div>
-			<h2 class="uppercase m-5 bg-yellow-200">tank monitor info</h2>
+			
 			<div class="m-6 p-2 grid">
 				<label for="tankModel" id="question">What model tank monitor is at the site</label>
 				<input class="border-4 m-2 pr-4" type="text" id="form-input" name="tankModel" />
@@ -289,23 +200,12 @@
 				<br />
 			</div>
 			<p class="text-center text-2xl bg-blue-200 p-2">
-				Once you hit the Submit button, email the text file to either me (jjordan@royalfarms) or to
-				Curtis
-			</p>
-			<button class="bg-blue-700 text-white p-2 m-5 align-center text-lg" on:click={submitForm}
-				>Submit</button
-			>
-		</div>
-	</div>
-</body>
-
+				Once you hit the Submit button, you can save this to your files, or email the text file to
+				me (jjordan@royalfarms)
+			</p>-->
 <style>
-	h2 {
+	p {
 		font-size: 1.4rem;
-		text-align: center;
-	}
-	label {
-		font-size: 1.3rem;
 	}
 	/* move the button to the center of the screen */
 	.align-center {
