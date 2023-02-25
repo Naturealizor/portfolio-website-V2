@@ -23,6 +23,7 @@
 	let pantherVoltage = '';
 	let pantherLoc = '';
 	let commsStyle = '';
+	let btnStyle = '';
 
 	function submitForm() {
 		// save the inputs to a txt file
@@ -46,26 +47,29 @@
 		URL.revokeObjectURL(link.href);
 	}
 
-	var currentValue = 0;
-	function handleClick(pwrType) {
-		alert('Old value: ' + currentValue);
-		alert('New value: ' + pwrType.value);
-		currentValue = pwrType.value;
-	}
+	// var currentValue = 0;
+	// function handleClick(pwrType) {
+	// 	alert('Old value: ' + currentValue);
+	// 	alert('New value: ' + pwrType.value);
+	// 	currentValue = pwrType.value;
+	// }
 </script>
 
 <body>
-	<div class="grid grid-cols-6">
-		<div class="col-span-4 col-start-2">
+	<div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-4">
+		<div
+			class="col-span-1 col-start-1 sm:col-span-4 lg:col-span-4 lg:col-start-2 2xl:col-span-2 2xl:col-start-2"
+		>
 			<!-- <DarkButton /> -->
-			<h2 class="uppercase m-5 bg-yellow-200">e-stop info</h2>
-			<br />
-			<div class="flex">
-				<h3 class="ml-6 text-3xl mr-5" id="question">Store #</h3>
+			<div class="flex m-5">
+				<h2 class=" text-3xl mr-5" id="question">Store #</h2>
 				<input class="border-4 " type="text" id="form-input" name="storeNum" />
 			</div>
+			<br />
+			<h2 class="uppercase m-5 bg-yellow-200">e-stop info</h2>
+			<div class="flex" />
 			<div class="m-6 p-2 grid">
-				<label for="totalEstops" id="question">How many E-Stops are at this store</label>
+				<label for="totalEstops" id="question">How many E-Stops are at this site</label>
 				<input
 					class="border-4 m-2 pr-1"
 					type="number"
@@ -99,6 +103,18 @@
 				/>
 				<input class="border-4 m-2 pr-1" type="range" bind:value={insideBtns} min="0" max="10" />
 				<br />
+				<label class="m-2" for="btnStyle" id="question"
+					>Are the E-Stop buttons momentary or maintain style?
+				</label>
+				<input
+					class="border-4 ml-2"
+					type="text"
+					bind:value={btnStyle}
+					id="form-input"
+					style="resize: both;"
+					name="resetEstop"
+				/>
+				<br />
 				<label class="m-2" for="resetEstop" id="question"
 					>Do the E-Stop buttons contain a reset button?
 				</label>
@@ -127,7 +143,9 @@
 				<label for="pwrType" id="question"
 					>Does the site have a Power Integrity, SSDI or an outside control box?</label
 				>
-				<label>
+				<input type="text" id="form-input" name="pwrType" class="border-4" />
+
+				<!-- <label>
 					<input
 						type="radio"
 						bind:group={pwrType}
@@ -156,7 +174,7 @@
 						name="pwrType"
 						class="border-4"
 					/> Outside Control Box
-				</label>
+				</label> -->
 				<!-- {#if }
 					
 				{/if} -->
@@ -183,6 +201,10 @@
 				<br />
 				<label for="otherStyle" id="question">If other please specify type</label>
 				<input class="border-4 m-2 pr-4" type="text" id="form-input" name="otherStyle" />
+				<label for="stpHook" id="question"
+					>Does this site have Dispenser Hook Isolation (STP-DHI) boxes installed?</label
+				>
+				<input class="border-4 m-2 pr-4" type="text" id="form-input" name="stpHook" />
 				<br />
 				<label for="motorLoc" id="question">Where are the motors controllers located </label>
 				<input class="border-4 m-2 pr-4" type="text" id="form-input" name="motorLoc" />
