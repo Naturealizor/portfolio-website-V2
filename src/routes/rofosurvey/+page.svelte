@@ -1,4 +1,8 @@
 <script>
+	let totalEstops;
+	let outsideBtns;
+	let insideBtns;
+
 	let estopQuestions = [
 		// { id: 1, text: `How many E-Stops are at this site?` },
 		// { id: 2, text: `Outside:` },
@@ -83,51 +87,89 @@
 				<input class="border-4 " type="text" id="form-input" name="storeNum" />
 			</div>
 			<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">e-stop info</h2>
-			{#each estopQuestions as question}
-				<div class="grid m-5">
-					<p class=" text-md mr-5" id="question">{question.text}</p>
-					<input class="border-4 " type="text" id="form-input" name="storeNum" />
-				</div>
-			{/each}
-			<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">Dispenser Manager</h2>
-			{#each powerQuestions as question}
-				<div class="grid m-5">
-					<p class=" text-md mr-5" id="question">{question.text}</p>
-					<input class="border-4 " type="text" id="form-input" name="storeNum" />
-				</div>
-			{/each}
-			<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">
-				motor control and dispenser info
-			</h2>
-			{#each motorQuestions as question}
-				<div class="grid m-5">
-					<p class=" text-md mr-5" id="question">{question.text}</p>
-					<input class="border-4 " type="text" id="form-input" name="storeNum" />
-				</div>
-			{/each}
-			<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">tank monitor info</h2>
-			{#each tankQuestions as question}
-				<div class="grid m-5">
-					<p class=" text-md mr-5" id="question">{question.text}</p>
-					<input class="border-4 " type="text" id="form-input" name="storeNum" />
-				</div>
-			{/each}
-			<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">
-				panther box and communication info
-			</h2>
-			{#each panterQuestions as question}
-				<div class="grid m-5">
-					<p class=" text-md mr-5" id="question">{question.text}</p>
-					<input class="border-4 " type="text" id="form-input" name="storeNum" />
-				</div>
-			{/each}
+			<div class="flex" />
+			<div class="m-6 p-2 grid">
+				<label for="totalEstops" id="question">How many E-Stops are at this site</label>
+				<input
+					class="border-4 m-2 pr-1"
+					type="number"
+					id="form-input"
+					bind:value={totalEstops}
+					max="10"
+					name="totalEstops"
+				/>
+				<input class="border-4 m-2 pr-1" type="range" bind:value={totalEstops} min="0" max="10" />
+				<br />
+				<label for="outsideBtns" id="question">Outside:</label>
+				<input
+					class="border-4 m-2 pr-1"
+					type="number"
+					id="form-input"
+					bind:value={outsideBtns}
+					min="0"
+					max="5"
+					name="outsideBtns"
+				/>
+				<input class="border-4 m-2 pr-1" type="range" bind:value={outsideBtns} min="0" max="10" />
+				<br />
+				<label for="insideBtns" id="question">Inside:</label>
+				<input
+					class="border-4 m-2 pr-4"
+					type="number"
+					id="form-input"
+					bind:value={insideBtns}
+					min="0"
+					max="5"
+					name="insideBtns"
+				/>
+				<input class="border-4 m-2 pr-1" type="range" bind:value={insideBtns} min="0" max="10" />
+				<br />
+				{#each estopQuestions as question}
+					<div class="grid m-5">
+						<p class=" text-md mr-5" id="question">{question.text}</p>
+						<input class="border-4 " type="text" id="form-input" name="storeNum" />
+					</div>
+				{/each}
+				<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">Dispenser Manager</h2>
+				{#each powerQuestions as question}
+					<div class="grid m-5">
+						<p class=" text-md mr-5" id="question">{question.text}</p>
+						<input class="border-4 " type="text" id="form-input" name="storeNum" />
+					</div>
+				{/each}
+				<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">
+					motor control and dispenser info
+				</h2>
+				{#each motorQuestions as question}
+					<div class="grid m-5">
+						<p class=" text-md mr-5" id="question">{question.text}</p>
+						<input class="border-4 " type="text" id="form-input" name="storeNum" />
+					</div>
+				{/each}
+				<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">tank monitor info</h2>
+				{#each tankQuestions as question}
+					<div class="grid m-5">
+						<p class=" text-md mr-5" id="question">{question.text}</p>
+						<input class="border-4 " type="text" id="form-input" name="storeNum" />
+					</div>
+				{/each}
+				<h2 class="uppercase m-10 bg-yellow-200 text-center text-2xl">
+					panther box and communication info
+				</h2>
+				{#each panterQuestions as question}
+					<div class="grid m-5">
+						<p class=" text-md mr-5" id="question">{question.text}</p>
+						<input class="border-4 " type="text" id="form-input" name="storeNum" />
+					</div>
+				{/each}
+			</div>
 		</div>
-	</div>
 
-	<button class="bg-blue-700 text-white p-2 m-5 align-center text-lg" on:click={submitForm}
-		>Submit</button
-	>
-</body>
+		<button class="bg-blue-700 text-white p-2 m-5 align-center text-lg" on:click={submitForm}
+			>Submit</button
+		>
+	</div></body
+>
 
 <!-- <div class="m-6 p-2 grid">
 				<label for="motorStyle" id="question"
