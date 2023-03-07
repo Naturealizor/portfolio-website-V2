@@ -95,8 +95,9 @@
 					type="number"
 					id="form-input"
 					bind:value={totalEstops}
-					max="10"
 					name="totalEstops"
+					min="0"
+					max="10"
 				/>
 				<input class="border-4 m-2 pr-1" type="range" bind:value={totalEstops} min="0" max="10" />
 				<br />
@@ -164,12 +165,12 @@
 				{/each}
 			</div>
 		</div>
+	</div>
 
-		<button class="bg-blue-700 text-white p-2 m-5 align-center text-lg" on:click={submitForm}
-			>Submit</button
-		>
-	</div></body
->
+	<button class="bg-blue-700 text-white p-2 m-5 align-center text-lg" on:click={submitForm}
+		>Submit</button
+	>
+</body>
 
 <!-- <div class="m-6 p-2 grid">
 				<label for="motorStyle" id="question"
