@@ -3,39 +3,39 @@
 	let outsideBtns;
 	let insideBtns;
 
-	let estopQuestions = [
+	let questionList = [
 		// { id: 1, text: `How many E-Stops are at this site?` },
 		// { id: 2, text: `Outside:` },
 		// { id: 3, text: `Inside:` },
-		{ id: 4, text: `Are the E-stop buttons momentary or maintain style?` },
-		{ id: 5, text: `Do the E-Stop buttons contain a reset button?` },
-		{ id: 6, text: `If yes what is the location?` },
-		{ id: 7, text: `Does the site have a Power Integrity, SSDI or an outside control box?` },
-		{ id: 8, text: `Is there a “fuel reset” button on the face of the unit?` },
-		{ id: 9, text: `If unit is outside where is the main reset for the E-Stop circuit?` },
+		{ id: 1, text: `Are the E-stop buttons momentary or maintain style?` },
+		{ id: 2, text: `Do the E-Stop buttons contain a reset button?` },
+		{ id: 3, text: `If yes what is the location?` },
+		{ id: 4, text: `Does the site have a Power Integrity, SSDI or an outside control box?` },
+		{ id: 5, text: `Is there a “fuel reset” button on the face of the unit?` },
+		{ id: 6, text: `If unit is outside where is the main reset for the E-Stop circuit?` },
 		{
-			id: 10,
+			id: 7,
 			text: `What style motor controllers are at the site? (i.e. MAGVFC, STP-IST, STP-CBS, Red Jacket etc..)`
 		},
-		{ id: 11, text: `If other please specify type` },
-		{ id: 12, text: `Does this site have Dispenser Hook Isolation (STP-DHI) boxes installed?` },
-		{ id: 13, text: `Where are the motors controllers located?` },
-		{ id: 14, text: `Are they accessible?` },
-		{ id: 15, text: `Are the breakers labelled correctly for the STPs?` },
-		{ id: 16, text: `List panel location, panel letter, and breaker#` },
-		{ id: 17, text: `Check labels for fuel dispensers and list panel info` },
-		{ id: 18, text: `Where is the tank monitor located?` },
-		{ id: 19, text: `Where is the tank monitor breaker located and how is it labelled?` },
+		{ id: 8, text: `If other please specify type` },
+		{ id: 9, text: `Does this site have Dispenser Hook Isolation (STP-DHI) boxes installed?` },
+		{ id: 10, text: `Where are the motors controllers located?` },
+		{ id: 11, text: `Are they accessible?` },
+		{ id: 12, text: `Are the breakers labelled correctly for the STPs?` },
+		{ id: 13, text: `List panel location, panel letter, and breaker#` },
+		{ id: 14, text: `Check labels for fuel dispensers and list panel info` },
+		{ id: 15, text: `Where is the tank monitor located?` },
+		{ id: 16, text: `Where is the tank monitor breaker located and how is it labelled?` },
 		{
-			id: 20,
+			id: 17,
 			text: `Is the Panther box plugged into a Mac Victor isolated ground receptacle (Orange plug)?`
 		},
-		{ id: 21, text: `Is there a low voltage disconnect box installed at the site?` },
+		{ id: 18, text: `Is there a low voltage disconnect box installed at the site?` },
 		{
-			id: 22,
+			id: 19,
 			text: `Does the site have Wayne Connect, Switch, or Wireless installed for ICR coms?`
 		},
-		{ id: 23, text: `Where is the above equipment located?` }
+		{ id: 20, text: `Where is the above equipment located?` }
 	];
 	// let powerQuestions = [
 	// 	{ id: 7, text: `Does the site have a Power Integrity, SSDI or an outside control box?` },
@@ -86,7 +86,7 @@
 			.map((input) => input.value)
 			.join('\n');
 
-		const content = { surveyQuestions } + { surveyAnswers };
+		const content = { surveyQuestions, surveyAnswers };
 
 		const file = new Blob([content], { type: 'text/plain' });
 		link.href = URL.createObjectURL(file);
@@ -94,7 +94,10 @@
 		link.click();
 		URL.revokeObjectURL(link.href);
 
-		console.log(content);
+		console.log(typeof content);
+		// console.log(typeof questions);
+		// console.log(typeof surveyQuestions);
+		// console.log(typeof surveyAnswers);
 	}
 
 	// var currentValue = 0;
@@ -160,7 +163,7 @@
 				/>
 				<input class="border-4 m-2 pr-1" type="range" bind:value={insideBtns} min="0" max="10" />
 				<br />
-				{#each estopQuestions as question}
+				{#each questionList as question}
 					<div class="grid m-3 pb-2">
 						<p class="text-base pb-2" id="question">{question.text}</p>
 						<input class="border-4 " type="text" id="form-input" name="storeNum" />
