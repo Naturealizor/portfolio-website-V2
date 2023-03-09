@@ -261,7 +261,7 @@
 		</a>
 		<ul>
 			<li>
-				<a class="float-right link link--nav" href="/rofosurvey">rofo</a>
+				<a class="float-right link link--nav mr-5" href="/rofosurvey">rofo</a>
 			</li>
 		</ul>
 	</footer>
