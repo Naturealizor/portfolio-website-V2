@@ -42,41 +42,43 @@
 		{ id: 23, text: `Where is the above equipment located?` } // Text
 	];
 
+	// create a function that submits the concatenates the questions array and answers array, then dumps that into a text file
+
 	function submitForm() {
+		// check request fields have at least one character
+		const inputs = document.querySelectorAll('#form-input');
+		let missingData = false;
+		for (let i = 0; i < inputs.length; i++) {
+			if (inputs[i].value === '') {
+				alert('Please complete all the form fields.');
+				missingData = true;
+				break;
+			}
+		}
+
+		if (missingData) return;
+
 		// save the inputs to a txt file
 		const link = document.createElement('a');
 		const questionInputs = document.querySelectorAll('#question');
-		const inputs = document.querySelectorAll('#form-input');
 		const questions = [];
 		questionInputs.forEach((question) => {
 			questions.push(question.innerText);
 		});
-		let surveyQuestions = questions.join('\n');
-		let surveyAnswers = Array.from(inputs)
-			.map((input) => input.value)
-			.join('\n');
+		const surveyQuestions = questions.join('\n');
+
+		const answers = Array.from(inputs).map((input) => input.value.trim());
+		const surveyAnswers = answers.join('\n');
 
 		const content = { surveyQuestions, surveyAnswers };
+		const json = JSON.stringify(content);
+		const blob = new Blob([json], { type: 'application/json' });
 
-		const file = new Blob([content], { type: 'text/plain' });
-		link.href = URL.createObjectURL(file);
-		link.download = 'rofoSurvey.txt';
+		link.href = URL.createObjectURL(blob);
+		link.download = 'survey.json';
 		link.click();
 		URL.revokeObjectURL(link.href);
-
-		console.log(typeof content);
-		// console.log(typeof questions);
 	}
-
-	// Better Comments examples
-	/**
-	 * *hello
-	 * !world
-	 * // this is a comment
-	 * ? this is a question
-	 * @ this is a note
-	 * @param this is a parameter
-	 * */
 </script>
 
 <body>
@@ -87,7 +89,7 @@
 		>
 			Store #
 		</h2>
-		<input c type: `Num`,lass="border-4 col-span-2" type="text" id="form-input" name="storeNum" />
+		<input class="border-4 col-span-2" type="text" id="form-input" name="storeNum" />
 	</div>
 	<div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-4">
 		<div
@@ -97,59 +99,308 @@
 				e-stop info
 			</h2>
 			<div class="flex" />
-			<!-- <div class="m-6 p-2 grid">
-				<label for="totalEstops" id="question">How many E-Stops are at this site</label>
-				<input
-					class="border-4 m-2 pr-1"
-					type="nu type: `Num`,mber"
-					id="form-input"
-					bind:value={totalEstops}
-					name="totalEstops"
-					min="0"
-					max="10"
-				/>
-				<input class="border-4 m-2 pr-1" type="range" bind:value={totalEstops} min="0" max="10" />
-				<br />
-				<label for="outsideBtns" id="question">Outside:</label>
-				<input
-					class="border-4 m-2 pr-1"
-					type="nu type: `Num`,mber"
-					id="form-input"
-					bind:value={outsideBtns}
-					min="0"
-					max="5"
-					name="outsideBtns"
-				/>
-				<input class="border-4 m-2 pr-1" type="range" bind:value={outsideBtns} min="0" max="10" />
-				<br />
-				<label for="insideBtns" id="question">Inside:</label>
-				<input
-					class="border-4 m-2 pr-4"
-					type="nu type: `Num`,mber"
-					id="form-input"
-					bind:value={insideBtns}
-					min="0"
-					max="5"
-					name="insideBtns"
-				/>
-				<input class="border-4 m-2 pr-1" type="range" bind:value={insideBtns} min="0" max="10" />
-				<br /> -->
 			{#each questionList as question}
 				<div class="grid m-3 pb-2">
 					<p class="text-base pb-2" id="question">{question.text}</p>
 					<!-- create if statement -->
 					{#if question.id <= 5}
-						<input c type: `Num`,lass="border-4 " type="text" id="form-input" name="storeNum" />
+						{#if question.id === 4}
+							<div class="flex">
+								<input
+									class="border-4"
+									type="radio"
+									id="form-input"
+									name="eStopButtons"
+									value="Momentary"
+								/>
+								<label for="Momentary">Momentary</label>
+							</div>
+							<div class="flex">
+								<input
+									class="border-4"
+									type="radio"
+									id="form-input"
+									name="eStopButtons"
+									value="Maintain"
+								/>
+								<label for="Maintain">Maintain</label>
+							</div>
+						{/if}
+						{#if question.id === 5}
+							<div class="flex">
+								<input
+									class="border-4"
+									type="radio"
+									id="form-input"
+									name="eStopReset"
+									value="Yes"
+								/>
+								<label for="Yes">Yes</label>
+							</div>
+							<div class="flex">
+								<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
+								<label for="No">No</label>
+							</div>
+						{/if}
 					{/if}
-				</div>
-			{/each}
-		</div>
-	</div>
-	<!-- </div> -->
+					{#if question.id === 7}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="powerIntegrity"
+								value="Power Integrity"
+							/>
+							<label for="Power Integrity">Power Integrity</label>
+						</div>
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="powerIntegrity"
+								value="SSDI"
+							/>
+							<label for="SSDI">SSDI</label>
+						</div>
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="powerIntegrity"
+								value="Outside Control Box"
+							/>
+							<label for="Outside Control Box">Outside Control Box</label>
+						</div>
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="powerIntegrity"
+								value="Other"
+							/>
+							<label for="Other">Other</label>
+						</div>
+					{/if}
+					{#if question.id === 8}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopLocation"
+								value="Inside Control Box"
+							/>
+							<label for="Inside Control Box">Inside Control Box</label>
+						</div>
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopLocation"
+								value="Outside Control Box"
+							/>
+							<label for="Outside Control Box">Outside Control Box</label>
+						</div>
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopLocation"
+								value="Other"
+							/>
+							<label for="Other">Other</label>
+						</div>
+					{/if}
+					{#if question.id === 9}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopType"
+								value="Push Button"
+							/>
+							<label for="Push Button">Push Button</label>
+						</div>
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopType"
+								value="Pull Cord"
+							/>
+							<label for="Pull Cord">Pull Cord</label>
+						</div>
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopType"
+								value="Other"
+							/>
+							<label for="Other">Other</label>
+						</div>
+					{/if}
+					{#if question.id === 10}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopFunction"
+								value="Stop"
+							/>
+							<label for="Stop">Stop</label>
+						</div>
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopFunction"
+								value="Stop and Reset"
+							/>
+							<label for="Stop and Reset">Stop and Reset</label>
+						</div>
+						{/if}
+					{#if question.id === 11}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopReset"
+								value="Yes"
+							/>
+							<label for="Yes">Yes</label>
+						</div>
+						<div class="flex">
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
+							<label for="No">No</label>
+						</div>
+					{/if}
+					{#if question.id === 12}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopReset"
+								value="Yes"
+							/>
+							<label for="Yes">Yes</label>
+						</div>
+						<div class="flex">
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
+							<label for="No">No</label>
+						</div>
+					{/if}
+					{#if question.id === 13}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopReset"
+								value="Yes"
+							/>
+							<label for="Yes">Yes</label>
+						</div>
+						<div class="flex">
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
+							<label for="No">No</label>
+						</div>
+					{/if}
+					{#if question.id === 14}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopReset"
+								value="Yes"
+							/>
+							<label for="Yes">Yes</label>
+						</div>
+						<div class="flex">
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
+							<label for="No">No</label>
+						</div>
+					{/if}
+					{#if question.id === 15}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopReset"
+								value="Yes"
+							/>
+							<label for="Yes">Yes</label>
+						</div>
+						<div class="flex">
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
+							<label for="No">No</label>
+						</div>
+					{/if}
+					{#if question.id === 16}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopReset"
+								value="Yes"
+							/>
+							<label for="Yes">Yes</label>
+						</div>
+						<div class="flex">
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
+							<label for="No">No</label>
+						</div>
+					{/if}
+					{#if question.id === 17}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopReset"
+								value="Yes"
+							/>
+							<label for="Yes">Yes</label>
+						</div>
+						<div class="flex">
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
+							<label for="No">No</label>
+						</div>
+					{/if}
+					{#if question.id === 18}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopReset"
+								value="Yes"
+							/>
+							<label for="Yes">Yes</label>
+						</div>
+						<div class="flex">
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
+							<label for="No">No</label>
 
+		</div>
 	<button class="bg-blue-700 text-white p-2 m-5 align-center text-lg" on:click={submitForm}
-		>Submit</button
-	>
+		>Submit</button>
 </body>
 
 <style>
