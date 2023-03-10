@@ -111,6 +111,18 @@
 									type="radio"
 									id="form-input"
 									name="eStopButtons"
+									value="Yes"
+								/>
+
+								<label for="Yes">Yes</label>
+							</div>
+
+							<div class="flex">
+								<input
+									class="border-4"
+									type="radio"
+									id="form-input"
+									name="eStopButtons"
 									value="Momentary"
 								/>
 								<label for="Momentary">Momentary</label>
@@ -239,13 +251,7 @@
 							<label for="Pull Cord">Pull Cord</label>
 						</div>
 						<div class="flex">
-							<input
-								class="border-4"
-								type="radio"
-								id="form-input"
-								name="eStopType"
-								value="Other"
-							/>
+							<input class="border-4" type="radio" id="form-input" name="eStopType" value="Other" />
 							<label for="Other">Other</label>
 						</div>
 					{/if}
@@ -270,16 +276,10 @@
 							/>
 							<label for="Stop and Reset">Stop and Reset</label>
 						</div>
-						{/if}
+					{/if}
 					{#if question.id === 11}
 						<div class="flex">
-							<input
-								class="border-4"
-								type="radio"
-								id="form-input"
-								name="eStopReset"
-								value="Yes"
-							/>
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="Yes" />
 							<label for="Yes">Yes</label>
 						</div>
 						<div class="flex">
@@ -289,13 +289,7 @@
 					{/if}
 					{#if question.id === 12}
 						<div class="flex">
-							<input
-								class="border-4"
-								type="radio"
-								id="form-input"
-								name="eStopReset"
-								value="Yes"
-							/>
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="Yes" />
 							<label for="Yes">Yes</label>
 						</div>
 						<div class="flex">
@@ -305,13 +299,7 @@
 					{/if}
 					{#if question.id === 13}
 						<div class="flex">
-							<input
-								class="border-4"
-								type="radio"
-								id="form-input"
-								name="eStopReset"
-								value="Yes"
-							/>
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="Yes" />
 							<label for="Yes">Yes</label>
 						</div>
 						<div class="flex">
@@ -321,13 +309,7 @@
 					{/if}
 					{#if question.id === 14}
 						<div class="flex">
-							<input
-								class="border-4"
-								type="radio"
-								id="form-input"
-								name="eStopReset"
-								value="Yes"
-							/>
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="Yes" />
 							<label for="Yes">Yes</label>
 						</div>
 						<div class="flex">
@@ -337,13 +319,7 @@
 					{/if}
 					{#if question.id === 15}
 						<div class="flex">
-							<input
-								class="border-4"
-								type="radio"
-								id="form-input"
-								name="eStopReset"
-								value="Yes"
-							/>
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="Yes" />
 							<label for="Yes">Yes</label>
 						</div>
 						<div class="flex">
@@ -353,13 +329,7 @@
 					{/if}
 					{#if question.id === 16}
 						<div class="flex">
-							<input
-								class="border-4"
-								type="radio"
-								id="form-input"
-								name="eStopReset"
-								value="Yes"
-							/>
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="Yes" />
 							<label for="Yes">Yes</label>
 						</div>
 						<div class="flex">
@@ -369,13 +339,7 @@
 					{/if}
 					{#if question.id === 17}
 						<div class="flex">
-							<input
-								class="border-4"
-								type="radio"
-								id="form-input"
-								name="eStopReset"
-								value="Yes"
-							/>
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="Yes" />
 							<label for="Yes">Yes</label>
 						</div>
 						<div class="flex">
@@ -385,22 +349,26 @@
 					{/if}
 					{#if question.id === 18}
 						<div class="flex">
-							<input
-								class="border-4"
-								type="radio"
-								id="form-input"
-								name="eStopReset"
-								value="Yes"
-							/>
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="Yes" />
 							<label for="Yes">Yes</label>
 						</div>
 						<div class="flex">
 							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
 							<label for="No">No</label>
-
+						</div>
+					{/if}
+				</div>
+			{/each}
 		</div>
+	</div>
 	<button class="bg-blue-700 text-white p-2 m-5 align-center text-lg" on:click={submitForm}
-		>Submit</button>
+		>Submit</button
+	>
+	<!-- {#if submitted}
+		<div class="text-center text-2xl">
+			<p>Thank you for your submission!</p>
+		</div>
+	{/if} -->
 </body>
 
 <style>
