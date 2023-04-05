@@ -3,6 +3,50 @@
 	let outsideBtns = 0;
 	let insideBtns = 0;
 
+	const rangeQuestions = [
+		{ id: 1, type: `Num`, text: `How many E-Stops are at this site?` }, // Num
+		{ id: 2, type: `Num`, text: `Outside:` }, // Num
+		{ id: 3, type: `Num`, text: `Inside:` } // Num
+	];
+	const multipleChoiceQuestions = [
+		{ id: 4, text: `Are the E-stop buttons momentary or maintain style?` }, // Radio
+		{
+			id: 7,
+			text: `Does the site have a Power Integrity, SSDI or an outside control box?`,
+			type: `radio`
+		}, // Radio
+		{
+			id: 10,
+			text: `What style motor controllers are at the site? (i.e. MAGVFC, STP-IST, STP-CBS, Red Jacket etc..)`
+		}, // Radio
+		{ id: 13, text: `Where are the motors controllers located?` }, // Radio
+		{
+			id: 22,
+			text: `Does the site have Wayne Connect, Switch, or Wireless installed for ICR coms?`
+		} // Radio
+	];
+	const boolQuestions = [
+		{ id: 5, text: `Do the E-Stop buttons contain a reset button?` }, // Bool
+		{ id: 8, text: `If unit is outside where is the main reset for the E-Stop circuit?` }, // Bool
+		{ id: 12, text: `Does this site have Dispenser Hook Isolation (STP-DHI) boxes installed?` }, // Bool
+		{ id: 14, text: `Are they accessible?` }, // Bool
+		{ id: 15, text: `Are the breakers labelled correctly for the STPs?` }, // Bool
+		{
+			id: 20,
+			text: `Is the Panther box plugged into a Mac Victor isolated ground receptacle (Orange plug)?`
+		}, // Bool
+		{ id: 21, text: `Is there a low voltage disconnect box installed at the site?` } // Bool
+	];
+	const textQuestions = [
+		{ id: 6, text: `If yes what is the location?` }, // Text
+		{ id: 9, text: `If other please specify type` }, // Text
+		{ id: 16, text: `List panel location, panel letter, and breaker#` }, // Text
+		{ id: 17, text: `Check labels for fuel dispensers and list panel info` }, // Text
+		{ id: 18, text: `Where is the tank monitor located?` }, // Text
+		{ id: 19, text: `Where is the tank monitor breaker located and how is it labelled?` }, // Text
+		{ id: 23, text: `Where is the above equipment located?` } // Text
+	];
+
 	let questionList = [
 		{ id: 1, type: `Num`, text: `How many E-Stops are at this site?` }, // Num
 		{ id: 2, type: `Num`, text: `Outside:` }, // Num
@@ -45,37 +89,36 @@
 	// create a function that submits the concatenates the questions array and answers array, then dumps that into a text file
 
 	function submitForm() {
-		// check request fields have at least one character
-		const inputs = document.querySelectorAll('#form-input');
-		let missingData = false;
-		for (let i = 0; i < inputs.length; i++) {
-			if (inputs[i].value === '') {
-				alert('Please complete all the form fields.');
-				missingData = true;
-				break;
-			}
-		}
-
-		if (missingData) return;
-
 		// save the inputs to a txt file
 		const link = document.createElement('a');
 		const questionInputs = document.querySelectorAll('#question');
+		const inputs = document.querySelectorAll('#form-input');
 		const questions = [];
+		// console.log(questions);
+
+		const responses = []; //created new array to match questions, then copied forEach
+		inputs.forEach((response) => responses.push(response.value));
+		console.log(responses);
 		questionInputs.forEach((question) => {
 			questions.push(question.innerText);
 		});
-		const surveyQuestions = questions.join('\n');
+		const contents = questions.join('\t') + '\t';
+		const answeredContent = Array.from(inputs)
+			.map((input) => input.value)
+			.join('\t');
 
-		const answers = Array.from(inputs).map((input) => input.value.trim());
-		const surveyAnswers = answers.join('\n');
+		// console.log(contents);
+		// console.log(answeredContent);
 
-		const content = { surveyQuestions, surveyAnswers };
-		const json = JSON.stringify(content);
-		const blob = new Blob([json], { type: 'application/json' });
+		//create a function that joins contents and answeredContent
+		function combineInputs(item) {
+			return contents + answeredContent;
+		}
+		// console.log(combineInputs());
 
-		link.href = URL.createObjectURL(blob);
-		link.download = 'survey.json';
+		const file = new Blob([contents], { type: 'text/plain' });
+		link.href = URL.createObjectURL(file);
+		link.download = 'rofoSurvey.txt';
 		link.click();
 		URL.revokeObjectURL(link.href);
 	}
@@ -84,7 +127,7 @@
 <body>
 	<div class="m-5 grid grid-cols-5 md:grid-cols-7">
 		<h2
-			class="text-2xl sm:text-3xl mr-3 col-span-2  col-start-1 md:col-start-2 text-right"
+			class="text-2xl sm:text-3xl mr-3 col-span-2 col-start-1 md:col-start-2 text-right"
 			id="question"
 		>
 			Store #
@@ -103,59 +146,39 @@
 				<div class="grid m-3 pb-2">
 					<p class="text-base pb-2" id="question">{question.text}</p>
 					<!-- create if statement -->
-					{#if question.id <= 5}
-						{#if question.id === 4}
-							<div class="flex">
-								<input
-									class="border-4"
-									type="radio"
-									id="form-input"
-									name="eStopButtons"
-									value="Yes"
-								/>
-
-								<label for="Yes">Yes</label>
-							</div>
-
-							<div class="flex">
-								<input
-									class="border-4"
-									type="radio"
-									id="form-input"
-									name="eStopButtons"
-									value="Momentary"
-								/>
-								<label for="Momentary">Momentary</label>
-							</div>
-							<div class="flex">
-								<input
-									class="border-4"
-									type="radio"
-									id="form-input"
-									name="eStopButtons"
-									value="Maintain"
-								/>
-								<label for="Maintain">Maintain</label>
-							</div>
-						{/if}
-						{#if question.id === 5}
-							<div class="flex">
-								<input
-									class="border-4"
-									type="radio"
-									id="form-input"
-									name="eStopReset"
-									value="Yes"
-								/>
-								<label for="Yes">Yes</label>
-							</div>
-							<div class="flex">
-								<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
-								<label for="No">No</label>
-							</div>
-						{/if}
+					{#if question.id === 4}
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopButtons"
+								value="Momentary"
+							/>
+							<label for="Momentary">Momentary</label>
+						</div>
+						<div class="flex">
+							<input
+								class="border-4"
+								type="radio"
+								id="form-input"
+								name="eStopButtons"
+								value="Maintain"
+							/>
+							<label for="Maintain">Maintain</label>
+						</div>
 					{/if}
-					{#if question.id === 7}
+					{#if question.id === 5}
+						<div class="flex">
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="Yes" />
+							<label for="Yes">Yes</label>
+						</div>
+						<div class="flex">
+							<input class="border-4" type="radio" id="form-input" name="eStopReset" value="No" />
+							<label for="No">No</label>
+						</div>
+					{/if}
+					<!-- {#if question.id === 7}
 						<div class="flex">
 							<input
 								class="border-4"
@@ -276,7 +299,7 @@
 							/>
 							<label for="Stop and Reset">Stop and Reset</label>
 						</div>
-					{/if}
+					{/if} -->
 				</div>
 			{/each}
 		</div>
