@@ -223,6 +223,26 @@
 						<i aria-hidden="true" class="fas fa-external-link-alt" />
 					</a>
 				</div>
+				<div class="project">
+					<h3>Royal Farms Projects</h3>
+					<p class="project__description">
+						Here are some projects that I've been working on now and then. So far, none of these
+						projects have been used by the company, just trying to practice some new skills working
+						on real world problems.
+					</p>
+					<ul>
+						<li>
+							<a class="link link--nav mr-5" href="/rofosurvey">rofo</a>
+						</li>
+					</ul>
+
+					<a href="https://github.com" aria-label="source code" class="link link--icon">
+						<i aria-hidden="true" class="fab fa-github" />
+					</a>
+					<a href="https://example.com" aria-label="live preview" class="link link--icon">
+						<i aria-hidden="true" class="fas fa-external-link-alt" />
+					</a>
+				</div>
 			</div>
 		</section>
 
@@ -259,11 +279,6 @@
 		<a href="https://github.com/Naturealizor/portfolio-website-V2" class="link footer__link">
 			Created By Jacob Jordan
 		</a>
-		<ul>
-			<li>
-				<a class="float-right link link--nav" href="/rofosurvey">rofo</a>
-			</li>
-		</ul>
 	</footer>
 
 	<div class="scroll-container">
